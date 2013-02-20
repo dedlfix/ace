@@ -16,24 +16,25 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
-    $settings = array('aceMode' => 'php',
-                      'aceTheme' => 'monokai',
-                      'aceFontSize' => 12,
-                      'aceScrollSpeed' => 6,
-                      'aceEditorHeight' => 400,
-                      'aceWrapLines' => 'true',
-                      'aceWrapRange' => 80,
-                      'aceLayoutIntegrate' => 'true',
-                      'aceHighlightActiveLine' => 'true',
-                      'aceCookieLife' => '365',  // in days, -1 defaults to Session cookie
-    );
+require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'AceController.php';
 
-    // Store settings.
-    if (Plugin::setAllSettings($settings, 'ace')) {
-            Flash::set('success', __('Ace - plugin settings initialized.'));
-    }
-    else
-        Flash::set('error', __('Ace - unable to store plugin settings!'));
-?>
+$settings = array(
+    'Mode' => AceController::DEFAULT_MODE,
+    'Theme' => AceController::DEFAULT_THEME,
+    'FontSize' => AceController::DEFAULT_FONT_SIZE,
+    'ScrollSpeed' => AceController::DEFAULT_SCROLL_SPEED,
+    'EditorHeight' => AceController::DEFAULT_EDITOR_HEIGHT,
+    'HighlightActiveLine' => AceController::DEFAULT_HIGHLIGHT_ACTIVE_LINE,
+    'WrapLines' => AceController::DEFAULT_WRAP_LINES,
+    'WrapRange' => AceController::DEFAULT_WRAP_RANGE,
+    'CookieLife' => AceController::DEFAULT_COOKIE_LIFE,  // in days, -1 defaults to Session cookie
+    'LayoutIntegrate' => AceController::DEFAULT_LAYOUT_INTEGRATE,
+);
+
+// Store settings.
+if (Plugin::setAllSettings($settings, 'ace'))
+    Flash::set('success', __('Ace - plugin settings initialized.'));
+else
+    Flash::set('error', __('Ace - unable to store plugin settings!'));

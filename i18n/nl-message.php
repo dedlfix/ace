@@ -17,7 +17,7 @@
  */
 
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
 return array(
     '1 Day' => '1 dag',
@@ -30,13 +30,11 @@ return array(
     '<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings' => '<b>Let op:</b> mogelijk dient u <b>F5</b> in te drukken om de nieuwe instellingen toe te passen',
     'Ace - plugin settings initialized.' => 'Ace - plugin settings initialized.',
     'Ace - settings saved!' => 'Ace - instellingen opgeslagen!',
-    'Ace - unable to save ace_config.js file. Check permissions!' => 'Ace - het bestand ace_config.js kon niet worden opgeslagen. Controleer de permissies!',
     'Ace - unable to store plugin settings!' => 'Ace - de plugin instellingen konden niet worden opgeslagen!',
     'Ace - unable to store settings in database!' => 'Ace - de instellingen konden niet in de database worden opgeslagen!',
     'Ace settings' => 'Ace instellingen',
     'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' => 'Code editor en syntax highlighter zijn gebaseerd op de Ajax.org Cloud9 Editor.',
     'Cookies' => 'Cookies',
-    'Could not change ace_config.js file permissions to 0777. Do it manually!' => 'Kon de bestandspermissies van ace_config.js niet omzetten naar 0777. Doe dit handmatig!',
     'Default editor box height in pixels' => 'Standaardhoogte van het bewerkvenster in pixels',
     'Documentation' => 'Documentatie',
     'Editor font size in pixels.' => 'Lettergrootte in pixels.',

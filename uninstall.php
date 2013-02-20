@@ -16,7 +16,7 @@
  * 
  */
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
 
 if (Plugin::deleteAllSettings('ace') === false) {

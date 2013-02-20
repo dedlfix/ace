@@ -17,7 +17,7 @@
  */
 
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
 return array(
     '1 Day' => '',
@@ -30,7 +30,6 @@ return array(
     '<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings' => '',
     'Ace - plugin settings initialized.' => '',
     'Ace - settings saved!' => '',
-    'Ace - unable to save ace_config.js file. Check permissions!' => '',
     'Ace - unable to store plugin settings!' => '',
     'Ace - unable to store settings in database!' => '',
     'Ace settings' => '',
@@ -38,7 +37,6 @@ return array(
     'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' => '',
 		'columns' => '',
     'Cookies' => '',
-    'Could not change ace_config.js file permissions to 0777. Do it manually!' => '',
     'Default editor box height in pixels' => '',
     'Documentation' => '',
     'Editor font size in pixels.' => '',

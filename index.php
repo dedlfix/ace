@@ -17,23 +17,20 @@
  */
 
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
-if(!defined("ACEDIR"))
-{
-	define('ACEDIR', PLUGINS_ROOT.'/ace');
-}
+defined('ACEDIR') or define('ACEDIR', PLUGINS_ROOT . '/ace');
 
 Plugin::setInfos(array(
-		'id'          => 'ace',
-		'title'       => 'Ace filter for Wolf CMS',
-		'description' => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
-		'version'     => '0.0.7',
-			'license'     => 'GPL',
-			'author'      => 'Marek Murawski',
-		'website'     => 'http://marekmurawski.pl/',
-		'update_url'  => 'http://marekmurawski.pl/static/wolfplugins/plugin-versions.xml',
-		'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
+    'id'          => 'ace',
+    'title'       => 'Ace filter for Wolf CMS',
+    'description' => __('Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.'),
+    'version'     => '0.0.7',
+    'license'     => 'GPL',
+    'author'      => 'Marek Murawski',
+    'website'     => 'http://marekmurawski.pl/',
+    'update_url'  => 'http://marekmurawski.pl/static/wolfplugins/plugin-versions.xml',
+    'require_wolf_version' => '0.7.3' // 0.7.5SP-1 fix -> downgrading requirement to 0.7.3
 ));
 
 if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
@@ -44,7 +41,7 @@ if ( AuthUser::hasPermission('admin_view')&&Plugin::isEnabled('ace') ) {
     if ( preg_match('/(\/plugin\/ace|page\/edit|snippet\/edit|layout\/edit|page\/add|snippet\/add|layout\/add)/',$uri,$match) ) {
         Plugin::addJavascript('ace', 'ace_editor.js');
         Plugin::addJavascript('ace', 'build/src-min/ace.js');
-        Plugin::addJavascript('ace', 'ace_config.js');
+        Plugin::addJavascript('ace', 'ace_config.php');
         Plugin::addJavascript('ace', 'js/jquery.cookie.js');
     }
 }

@@ -17,7 +17,7 @@
  */
 
 /* Security measure */
-if (!defined('IN_CMS')) { exit(); }
+defined('IN_CMS') or exit;
 
 return array(
     '1 Day' => '1 Tag',
@@ -30,7 +30,6 @@ return array(
     '<b>Note:</b> it may be neccesary to <b>hit F5</b> in editing pages in order to apply the new settings' => '<b>Hinweis:</b> Es kann notwendig sein, beim Bearbeiten von Seiten <b>F5 zu drücken</b>, um die neuen Einstellungen anzuwenden',
     'Ace - plugin settings initialized.' => 'Ace - Plugin-Einstellungen initialisiert.',
     'Ace - settings saved!' => 'Ace - Einstellungen gespeichert!',
-    'Ace - unable to save ace_config.js file. Check permissions!' => 'Ace - Speichern in Datei ace_config.js war nicht möglich. Überprüfen Sie die Berechtigungen!',
     'Ace - unable to store plugin settings!' => 'Ace - Speichern der Plguin-Einstellungen war nicht möglich!',
     'Ace - unable to store settings in database!' => 'Ace - Speichern in Datenbank war nicht möglich!',
     'Ace settings' => 'Ace-Einstellungen',
@@ -38,7 +37,6 @@ return array(
 		'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' => 'Code-Editor und Syntax-Hervorheber basierend auf Ajax.org Cloud9 Editor.',
     'columns' => 'Spalten',
 		'Cookies' => 'Cookies',
-    'Could not change ace_config.js file permissions to 0777. Do it manually!' => 'Konnte ace_config.js nicht auf 0777 ändern. Bitte händisch erledigen.',
     'Default editor box height in pixels' => 'Standard-Höhe der Editor-Box in Pixeln',
     'Documentation' => 'Dokumentation',
     'Editor font size in pixels.' => 'Editor-Schriftgröße in Pixeln.',
