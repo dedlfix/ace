@@ -5,6 +5,11 @@ require_once '../../../init.php';
 
 $settings = Plugin::getAllSettings('ace');
 
+header('Content-Type: text/javascript; charset=UTF-8');
+header('Cache-Control: max-age=86400, must-revalidate, private');
+header_remove('Expires');
+header_remove('Pragma');
+
 function boolstr($value) {
     return in_array($value, array('true', 'false')) ? $value : 'false';
 }
