@@ -15,9 +15,15 @@
  *
  */
 
-function insertModeChange(elem, id) {
+/**
+ * Creates select element to change Ace mode
+ * 
+ * @param id  editor's id, used to make unique html id's and cookie names
+ * @param modeSibling  jquery element after which the mode element should be inserted
+ */
+function insertModeChange(id, modeSibling) {
     if ($('#aceoptions' + id).length == 0) {
-        elem.after(
+        modeSibling.after(
             '<span id="aceoptions' + id + '" class="ace_options">'+
             '<label for="acemode_select_' + id + '" ' +
                 'id="acemode_label_' + id + '">' + aceStrMode + '</label>' +
@@ -37,11 +43,19 @@ function insertModeChange(elem, id) {
     }
 }
 
-function setupEditor(id, modeElement, textareaElement) {
+/**
+ * Creates an Ace editor
+ * 
+ * @param id  editor's id, used to make unique html id's and cookie names
+ * @param modeSibling  jquery element after which the mode element should be inserted
+ * @param textareaElement  the textarea as jquery element 
+ * @returns the editor
+ */
+function setupEditor(id, modeSibling, textareaElement) {
     var mode = $.cookie('aceM' + id);
     if (mode == null) mode = aceMode;  
     
-    insertModeChange(modeElement, id);
+    insertModeChange(id, modeSibling);
     
     $(textareaElement).after('<div id="aceeditor' + id + '" style="height: ' + aceEditorHeight + 'px"></div>');
     var ed = ace.edit('aceeditor' + id);
@@ -100,8 +114,13 @@ function setupEditor(id, modeElement, textareaElement) {
     return ed;
 }
 
-function insertPageAce(elem)  {
-    var partId = elem.attr('id').slice(5, -8);
+/**
+ * Inserts Ace elements into a Pages edit page
+ *  
+ * @param partElement
+ */
+function insertPageAce(partElement)  {
+    var partId = partElement.attr('id').slice(5, -8);
     var pId = 'P' + window.location.pathname.split("/").pop() + '-' + partId;
 
     var ed = setupEditor(pId, $('#part_' + partId + '_filter_id'), $('#part_' + partId + '_content'));
@@ -110,30 +129,49 @@ function insertPageAce(elem)  {
         ed.focus();
 }
 
-function removePageAce(partId) {
+/**
+ * Remove Ace elements from Pages edit page
+ * 
+ * @param partElement
+ */
+function removePageAce(partElement) {
+    var partId = partElement.attr('id').slice(5, -8);
     var pId = 'P' + window.location.pathname.split("/").pop() + '-' + partId;
     $('#aceeditor' + pId).remove();
     $('#aceoptions' + pId).remove();
 }
 
+/**
+ * Inserts Ace elements into a Snippets edit page
+ */
 function insertSnippetAce() {
     var sId = 'S' + window.location.pathname.split("/").pop();
     setupEditor(sId, $('#snippet_filter_id'), $('#snippet_content'));
 }
 
+/**
+ * Remove Ace elements from Snippets edit page
+ */
 function removeSnippetAce() {
     var sId = 'S' + window.location.pathname.split("/").pop();
     $('#aceeditor' + sId).remove();
     $('#aceoptions' + sId).remove();
 }
 
+/**
+ * Inserts Ace elements into a Layouts edit page
+ */
 function insertLayoutAce() {
     var lId = 'L' + window.location.pathname.split("/").pop();
     setupEditor(lId, $('#layout_content').prev(), $('#layout_content'));
 }
 
+/**
+ * main initialization
+ */
 $(document).ready(function() {
 
+    // setting cookies expiration time
     if (aceCookieLife != -1) {
         $.cookie.defaults = {
             expires: aceCookieLife
@@ -145,7 +183,7 @@ $(document).ready(function() {
         if (filtername == 'ace') {
             $('#' + elem.attr('id')).show();
             if ($('#body_page_edit').length > 0) { // we are in PAGE
-                removePageAce(elem.attr('id').slice(5, -8));
+                removePageAce(elem);
             }
             if ($('#body_snippet_edit').length > 0) { // we are in SNIPPET
                 removeSnippetAce();
@@ -165,6 +203,8 @@ $(document).ready(function() {
         }
     });
 
+    // we are in LAYOUT
+    // what does setCM means?
     if (($("#body_layout_edit").length > 0) && (typeof(setCM) == 'undefined') && aceLayoutIntegrate) {
         insertLayoutAce();
     }
