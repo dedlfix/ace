@@ -36,7 +36,7 @@ return array(
     'at' => 'bei',
 		'Code editor and syntax highlighter based on Ajax.org Cloud9 Editor.' => 'Code-Editor und Syntax-Hervorheber basierend auf Ajax.org Cloud9 Editor.',
     'columns' => 'Spalten',
-		'Cookies' => 'Cookies',
+    'Cookies' => 'Cookies',
     'Default editor box height in pixels' => 'Standard-Höhe der Editor-Box in Pixeln',
     'Documentation' => 'Dokumentation',
     'Editor font size in pixels.' => 'Editor-Schriftgröße in Pixeln.',
